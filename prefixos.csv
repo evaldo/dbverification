@@ -1,0 +1,16 @@
+1, id_,Numeric,Identificacao ou Identificador,id_empregado,Identificador unico da tabela (chave primaria) pode ser um sequence,A
+2, cd_,numeric char varchar,Codigo,cd_evento ,Codigo do Evento . Utilizado quando este for conhecido/visível pela aplicacao.,A
+3, dt_,Datetime,Datas ,dt_nascimento,Data de nascimento,A
+4, nu_,Numeric Varchar,Numeros ou Sequencia numerica iniciada com zero,nu_cpf  nu_telefone,Numeros utilizados para calculos. ,A
+5, ds_,char  varchar,Descricao,ds_celula,Descricao da celula. ,A
+6, dl_,clob,Detalhamento,dl_help ,Grande volumes de texto necessarios para detalhamentos. Quando uma tabelas possui detalhamento e ainda e bastante acessada e recomendavel desnormaliza-la  para fins de performance através da  criacao de uma relacao de 1 para 1 a fim de  segregar a coluna long em uma outra tabela.  ,A
+7, fl_,numeric char,Flag,fl_estado_civil ,Flag,A
+8, sq_,numeric;Sequencias,sq_cadastro ,Utilizado para  armazenamento de sequencias que nao sao primary keys e deverao ser utilizadas somente quando necessario   ,A
+9, nm_,varchar,Nomes,nm_candidato,Utilizado para armazenamento de nomes.,A
+10, vl_,numeric,Valores ,vl_salario,Utilizado para armazenamento de valores ,A
+11,qt_,numeric,Quantidades ,qt_ligacoes,Utilizado para armazenamento de quantidades ,A
+12, hr_,VARCHAR,Horas,hr_inicio,Hora de início,A
+13, sg_,numeric VARCHAR,Siglas,sg_unidade,Sigla da unidade medida,A
+14, pc_,numeric,Percentual,pc_aumento,Percentagem de aumento,A
+15, dc_,numeric,Duração,dc_atendimento,Duração em tempo,A
+16, tp_,char numeric,tipo ,tp_campanha,Utilizado para armazenamento de tipos ou seja identificadores que retratam um conjunto de características conhecidas normalmente possuem check constraints associadas,A
