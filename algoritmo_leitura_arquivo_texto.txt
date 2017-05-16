@@ -1,0 +1,27 @@
+Abrir o arquivo texto //.SQL, no caso do projeto//
+Enquanto Não for Final de Arquivo Faça
+
+	Ler ou posicional na Linha do arquivo
+	Conectar no banco de dados do projeto
+
+	Selecionar //com o comando SELECT// todos os registros da tabela de parâmetro
+
+	Enquanto Não For o último Registro da Tabela de Parâmetro //T_SPDC_PRMT_ACSSO_TXTO
+
+		Extrair o comando da linha do arquivo texto utilizando o caracter de início e fim de extração
+		//Usar as colunas NU_INIC_ACSSO_TXTO e NU_FIM_ACSSO_TXTO para ler o início do texto a ser extraído	
+
+		Se o texto extraído após o uso das colunas for igual ao conteúdo do campo DS_PRMT_ACSSO_TXTO então
+			Mostrar o nome que está após o texto extraído //igual ao campo DS_PRMT_ACSSO_TXTO
+			//Por exemplo, se na posição 1 a 13 encontrou-se CREATE TABLE e igual a conteúdo de DS_PRMT_ACSSO_TXTO, extrair o nome que se encontra após CREATE TABLE
+			//O mesmo para todos as descrições de texto que deve ser validados encontrados no campo DS_PRMT_ACSSO_TXTO
+		Fim Se
+
+		Próximo Registro
+
+	Fim do Enquanto
+	
+	Leitura da próxima linha do arquivo
+
+Fim do Enquanto
+
