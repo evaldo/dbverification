@@ -20,14 +20,7 @@ public class AcessoTextoDAO {
             conexao = DriverManager.getConnection("jdbc:derby://localhost:1527/anotacaoSemantica", "teste", "teste");
             Statement operacao = conexao.createStatement();
             ResultSet resultado = operacao.executeQuery("SELECT * FROM T_SPDC_PRMT_ACSSO_TXTO WHERE DS_PRMT_ACSSO_TXTO LIKE '" + trecho.trim()+"'");
-           
-//   acess.setIdparam(resultado.getLong("Idparam"));
-//            acess.setDesParam(resultado.getString("DesParam"));
-//            acess.setNumInicio(resultado.getInt("NumInicio"));
-//            acess.setNumFim(resultado.getInt("NumFim"));
-//            acess.setTamanho(resultado.getInt("Tamanho"));
-//            acess.setFlagFim(resultado.getString("FlagFim"));
-//            acess.setTipo(resultado.getString("Tipo"));
+
  while (resultado.next()) {
             acess.setIdparam(resultado.getLong("ID_PRMT_ACSSO_TXTO"));
             acess.setDesParam(resultado.getString("DS_PRMT_ACSSO_TXTO"));
