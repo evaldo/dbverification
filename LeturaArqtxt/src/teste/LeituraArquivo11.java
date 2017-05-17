@@ -26,7 +26,7 @@ public class LeituraArquivo11 {
 
         System.out.printf("Informe o nome de arquivo texto:\n");
         String nomeArqui = ler.nextLine();
-        
+
         System.out.printf("Informe o nome de arquivo texto:\n");
         String trecho = ler.nextLine();
 
@@ -38,30 +38,46 @@ public class LeituraArquivo11 {
             String linha = lerArq.readLine(); // lê a primeira linha
             linha.trim();
             //lerArq.readLine();
-            while(linha!=null){
+            while (linha != null) {
+                //trecho.trim();
                 linha = lerArq.readLine();
-            if (linha.contains(trecho.trim())) {
-                
-                AcessoTextoDAO acDAO = new AcessoTextoDAO();
-                int num_inicio = acDAO.selecionarTexto(trecho).getNumFim();//deverá ser modificado
-                String flag = acDAO.selecionarTexto(trecho).getFlagFim();
-                String str = "";
-                char[] array = new char[linha.length()];
-                linha.getChars(num_inicio, linha.lastIndexOf(flag), array, 0);
-                System.out.printf("Nome da tabela: ");
-                String temp = String.copyValueOf(array);
-                System.out.print(temp.trim() + "\n");
+                if (linha == null) {
+                    arq.close();
+                } else if (linha.contains(trecho.trim())) {
+
+                    AcessoTextoDAO acDAO = new AcessoTextoDAO();
+                    String flag = acDAO.selecionarTexto(trecho).getFlagFim();
+                    int num_inicio = linha.lastIndexOf(trecho) + trecho.length();
+                    int num_fim = linha.indexOf(flag.trim());
+
+//int num_inicio = acDAO.selecionarTexto(trecho).getNumFim();//deverá ser modificado taidolvez remov
+int tamanhoLinha;
+                    if (linha.contains("--")) {
+                        tamanhoLinha = linha.trim().lastIndexOf("--");
+                    }
+                    else{
+                        
+                    tamanhoLinha = linha.length();
+                    }
+
+                    char[] array = new char[tamanhoLinha];
+if(array.length > 0 ){
+                    linha.getChars(num_inicio, num_fim, array, 0);
+                    System.out.printf("Nome da tabela: ");
+                    String temp = String.copyValueOf(array);
+                    System.out.print(temp.trim() + "\n");
+}
+                }
+
             }
-           
-        }
-            arq.close();
-            //d:\tabela.sql CREATE TABLE 
-        }catch (IOException e) {
+            // arq.close();
+            //d:\tabela.sql CREATE TABLE COMMENT --COMMENT
+        } catch (IOException e) {
             System.err.printf("Erro na abertura do arquivo: %s.\n",
                     e.getMessage());
         }
 
         System.out.println();
-    
-}
+
+    }
 }
