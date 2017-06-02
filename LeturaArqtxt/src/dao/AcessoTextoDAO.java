@@ -17,11 +17,11 @@ public class AcessoTextoDAO {
         Connection conexao;
          AcessoTexto acess = new AcessoTexto();
         try {
-            conexao = DriverManager.getConnection("jdbc:derby://localhost:1527/anotacaoSemantica", "teste", "teste");
+            conexao = DriverManager.getConnection("jdbc:derby://localhost:1527/anotacaoSemantica", "teste", "teste");//acesso ao banco.
             Statement operacao = conexao.createStatement();
-            ResultSet resultado = operacao.executeQuery("SELECT * FROM T_SPDC_PRMT_ACSSO_TXTO WHERE DS_PRMT_ACSSO_TXTO LIKE '" + trecho.trim()+"'");
+            ResultSet resultado = operacao.executeQuery("SELECT * FROM T_SPDC_PRMT_ACSSO_TXTO WHERE DS_PRMT_ACSSO_TXTO LIKE '" + trecho.trim()+"'");// filipe    
 
- while (resultado.next()) {
+ while (resultado.next()) {//enquanto há resultado
             acess.setIdparam(resultado.getLong("ID_PRMT_ACSSO_TXTO"));
             acess.setDesParam(resultado.getString("DS_PRMT_ACSSO_TXTO"));
             acess.setNumInicio(resultado.getInt("NU_INIC_ACSSO_TXTO"));
@@ -31,10 +31,10 @@ public class AcessoTextoDAO {
             acess.setTipo(resultado.getString("IC_TIPO_ACSSO_TXTO"));
  }
         } catch (SQLException ex) {
-            Logger.getLogger(AcessoTextoDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AcessoTextoDAO.class.getName()).log(Level.SEVERE, null, ex);//se der erro
         }
 
-        return acess;
+        return acess;//instancia setada pela query.
 
     }
 }

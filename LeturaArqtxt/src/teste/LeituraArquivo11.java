@@ -27,50 +27,48 @@ public class LeituraArquivo11 {
         System.out.printf("Informe o nome de arquivo texto:\n");
         String nomeArqui = ler.nextLine();
 
-        System.out.printf("Informe o nome de arquivo texto:\n");
+        System.out.printf("Informe o techo:\n");
         String trecho = ler.nextLine();
 
         System.out.printf("\nConteúdo do arquivo texto:\n");
         try {
-            FileReader arq = new FileReader(nomeArqui);
-            BufferedReader lerArq = new BufferedReader(arq);
+            FileReader arq = new FileReader(nomeArqui);//leitor de arquivos, recebe como parametro o caminho do arquivo.
+            BufferedReader lerArq = new BufferedReader(arq);//leitor do arquivo em parates
 
-            String linha = lerArq.readLine(); // lê a primeira linha
+            String linha = lerArq.readLine();// lê a primeira linha e salta
             linha.trim();
-            //lerArq.readLine();
-            while (linha != null) {
+
+            while (linha != null) {//enquanto na linha houver algum caractere faça:
                 //trecho.trim();
                 linha = lerArq.readLine();
                 if (linha == null) {
-                    arq.close();
-                } else if (linha.contains(trecho.trim())) {
+                    arq.close();//para não travar o projeto
+                } else if (linha.contains(trecho.trim())) {//se esta linha tiver o trecho que quero faça:
 
                     AcessoTextoDAO acDAO = new AcessoTextoDAO();
                     String flag = acDAO.selecionarTexto(trecho).getFlagFim();
-                    int num_inicio = linha.lastIndexOf(trecho) + trecho.length();
+                    int num_inicio = linha.lastIndexOf(trecho) + trecho.length();//talvez deletar do banco
                     int num_fim = linha.indexOf(flag.trim());
 
 //int num_inicio = acDAO.selecionarTexto(trecho).getNumFim();//deverá ser modificado taidolvez remov
-int tamanhoLinha;
-                    if (linha.contains("--")) {
-                        tamanhoLinha = linha.trim().lastIndexOf("--");
-                    }
-                    else{
-                        
-                    tamanhoLinha = linha.length();
+                    int tamanhoLinha;
+                    if (linha.contains("--")) {//verificar commentarios
+                        tamanhoLinha = linha.trim().lastIndexOf("--");//ve tamanho da linha caso o cometario não esta no inicio da linha
+                    } else {
+
+                        tamanhoLinha = linha.length();
                     }
 
-                    char[] array = new char[tamanhoLinha];
-if(array.length > 0 ){
-                    linha.getChars(num_inicio, num_fim, array, 0);
-                    System.out.printf("Nome da tabela: ");
-                    String temp = String.copyValueOf(array);
-                    System.out.print(temp.trim() + "\n");
-}
+                    char[] array = new char[tamanhoLinha];//cria um array com o tamanho da linha
+                    if (array.length > 0) {//se o array for maior que 0 faça
+                        linha.getChars(num_inicio, num_fim, array, 0);//pega um determinado trecho de codigo
+                        System.out.printf("Nome da tabela: ");
+                        String temp = String.copyValueOf(array);//de array p/ string
+                        System.out.print(temp.trim() + "\n");
+                    }
                 }
 
             }
-            // arq.close();
             //d:\tabela.sql CREATE TABLE COMMENT --COMMENT
         } catch (IOException e) {
             System.err.printf("Erro na abertura do arquivo: %s.\n",
