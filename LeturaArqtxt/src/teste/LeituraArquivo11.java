@@ -43,14 +43,49 @@ public class LeituraArquivo11 {
                 linha = lerArq.readLine();
                 if (linha == null) {
                     arq.close();//para não travar o projeto
+                } 
+                else if (trecho.contains("CREATE TABLE")) {//
+                    AcessoTextoDAO acDAO = new AcessoTextoDAO();
+                    String flag = acDAO.selecionarTexto(trecho).getFlagFim();
+                    int num_inicio = linha.lastIndexOf(trecho) + trecho.length();//talvez deletar do banco
+                    int num_fim = linha.indexOf(flag.trim());
+                    
+                    char[] array = new char[linha.length()];//cria um array com o tamanho da linha
+                    if (array.length > 0) {//se o array for maior que 0 faça
+                        linha.getChars(num_inicio, num_fim, array, 0);//pega um determinado trecho de codigo
+                        System.out.printf("Nome da tabela: ");
+                        String temp = String.copyValueOf(array);//de array p/ string
+                        System.out.print(temp.trim() + "\n");
+                        
+                    }
+                    
+
+                    while(!linha.contains(");")&&linha.contains(""))  {
+                        
+                        
+                        linha = lerArq.readLine();
+                        linha=linha.trim();
+                        if(!linha.contains(");")&&linha.contains("") ){
+                      
+                       
+                         char[] arrayColunas = new char[linha.length()];
+                  
+                         int lc= linha.indexOf(" ");
+                   
+                         linha.getChars(0, linha.indexOf(" "), arrayColunas, 0);
+                         System.out.printf("Nome da coluna: ");
+                        String tempColuna = String.copyValueOf(arrayColunas);//de array p/ string
+                        System.out.print(tempColuna.trim() + "\n");
+                        }
+                         //C:\Users\Filipe\Desktop\ProjetosGit\dbverification\script_create_database.sql CREATE TABLE
+                    
+                    }
                 } else if (linha.contains(trecho.trim())) {//se esta linha tiver o trecho que quero faça:
 
                     AcessoTextoDAO acDAO = new AcessoTextoDAO();
                     String flag = acDAO.selecionarTexto(trecho).getFlagFim();
                     int num_inicio = linha.lastIndexOf(trecho) + trecho.length();//talvez deletar do banco
                     int num_fim = linha.indexOf(flag.trim());
-
-//int num_inicio = acDAO.selecionarTexto(trecho).getNumFim();//deverá ser modificado taidolvez remov
                     int tamanhoLinha;
                     if (linha.contains("--")) {//verificar commentarios
                         tamanhoLinha = linha.trim().lastIndexOf("--");//ve tamanho da linha caso o cometario não esta no inicio da linha
@@ -61,6 +96,7 @@ public class LeituraArquivo11 {
 
                     char[] array = new char[tamanhoLinha];//cria um array com o tamanho da linha
                     if (array.length > 0) {//se o array for maior que 0 faça
+                        linha.trim();
                         linha.getChars(num_inicio, num_fim, array, 0);//pega um determinado trecho de codigo
                         System.out.printf("Nome da tabela: ");
                         String temp = String.copyValueOf(array);//de array p/ string
