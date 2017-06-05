@@ -36,7 +36,7 @@ public class LeituraArquivo11 {
             BufferedReader lerArq = new BufferedReader(arq);//leitor do arquivo em parates
 
             String linha = lerArq.readLine();// lê a primeira linha e salta
-            linha.trim();
+            linha = linha.trim();
 
             while (linha != null) {//enquanto na linha houver algum caractere faça:
                 //trecho.trim();
@@ -77,16 +77,17 @@ public class LeituraArquivo11 {
                         String tempColuna = String.copyValueOf(arrayColunas);//de array p/ string
                         System.out.print(tempColuna.trim() + "\n");
                         }
-                         //C:\Users\Filipe\Desktop\ProjetosGit\dbverification\script_create_database.sql CREATE TABLE
+                         //
                     
                     }
                 } else if (linha.contains(trecho.trim())) {//se esta linha tiver o trecho que quero faça:
-
+linha = linha.trim();
                     AcessoTextoDAO acDAO = new AcessoTextoDAO();
                     String flag = acDAO.selecionarTexto(trecho).getFlagFim();
                     int num_inicio = linha.lastIndexOf(trecho) + trecho.length();//talvez deletar do banco
-                    int num_fim = linha.indexOf(flag.trim());
+                    int num_fim = linha.lastIndexOf(flag.trim());
                     int tamanhoLinha;
+                    
                     if (linha.contains("--")) {//verificar commentarios
                         tamanhoLinha = linha.trim().lastIndexOf("--");//ve tamanho da linha caso o cometario não esta no inicio da linha
                     } else {
@@ -96,7 +97,7 @@ public class LeituraArquivo11 {
 
                     char[] array = new char[tamanhoLinha];//cria um array com o tamanho da linha
                     if (array.length > 0) {//se o array for maior que 0 faça
-                        linha.trim();
+                        
                         linha.getChars(num_inicio, num_fim, array, 0);//pega um determinado trecho de codigo
                         System.out.printf("Nome da tabela: ");
                         String temp = String.copyValueOf(array);//de array p/ string
@@ -105,7 +106,8 @@ public class LeituraArquivo11 {
                 }
 
             }
-            //d:\tabela.sql CREATE TABLE COMMENT --COMMENT
+            //d:\tabela.sql CREATE TABLE COMMENT --COMMENT 
+            //C:\Users\Filipe\Desktop\ProjetosGit\dbverification\script_create_database.sql CREATE TABLE
         } catch (IOException e) {
             System.err.printf("Erro na abertura do arquivo: %s.\n",
                     e.getMessage());
