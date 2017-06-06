@@ -25,7 +25,7 @@ USE `padrao_documento` ;
 -- -----------------------------------------------------
 -- Table `padrao_documento`.`T_SPDC_VOCB_CNTLD`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `padrao_documento`.`T_SPDC_VOCB_CNTLD` ;
+DROP TABLE IF EXISTS `padrao_documento`.`T_SPDC_VOCB_CNTLD` ;T_SPDC_OBJT
 
 SHOW WARNINGS;
 CREATE TABLE IF NOT EXISTS `padrao_documento`.`T_SPDC_VOCB_CNTLD` (
@@ -33,7 +33,7 @@ CREATE TABLE IF NOT EXISTS `padrao_documento`.`T_SPDC_VOCB_CNTLD` (
   `SG_VOCB_CNTLD` VARCHAR(10) NOT NULL COMMENT 'Sigla do termo usado no vocabulÃ¡rio controlado',
   `DS_VOCB_CNTLD` VARCHAR(1000) NOT NULL COMMENT 'Descricao do termo usado no vocabulario controlado',
   `FL_TIPO_VOCB_CNTLD` VARCHAR(1) NULL COMMENT 'Flag do tipo de vocabulario controlado usado para compor nomes de objetos e suas propriedades.',
-  PRIMARY KEY (`ID_VOCB_CNTLD`))
+  PRIMARY KEY (`ID_VOCB_CNTLD`));
 ENGINE = InnoDB;
 
 SHOW WARNINGS;
@@ -54,7 +54,7 @@ CREATE TABLE IF NOT EXISTS `padrao_documento`.`T_SPDC_PRFX` (
   `DS_CNTD_PRFX` VARCHAR(400) NOT NULL COMMENT 'Descricao do conteudo do prefixo de objeto',
   `DS_EXPLO_PRFX` VARCHAR(400) NOT NULL COMMENT 'Descricao do exemplo do prefixo',
   `DS_DFNC_PRFX` VARCHAR(400) NOT NULL COMMENT 'Descricao ampla da definicao do prefixo de objeto.',
-  PRIMARY KEY (`ID_PRFX`))
+  PRIMARY KEY (`ID_PRFX`));
 ENGINE = InnoDB;
 
 SHOW WARNINGS;
@@ -71,7 +71,7 @@ SHOW WARNINGS;
 CREATE TABLE IF NOT EXISTS `padrao_documento`.`T_TIPO_OBJT` (
   `ID_TIPO_OBJT` INT NOT NULL COMMENT 'Identificador Ãºnico do tipo do objeto',
   `DS_TIPO_OBJT` VARCHAR(45) NOT NULL COMMENT 'Descricao do tipo de objeto',
-  PRIMARY KEY (`ID_TIPO_OBJT`))
+  PRIMARY KEY (`ID_TIPO_OBJT`));
 ENGINE = InnoDB;
 
 SHOW WARNINGS;
@@ -98,7 +98,7 @@ CREATE TABLE IF NOT EXISTS `padrao_documento`.`T_SPDC_OBJT` (
     FOREIGN KEY (`ID_PRFX`)
     REFERENCES `padrao_documento`.`T_SPDC_PRFX` (`ID_PRFX`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON UPDATE NO ACTION);
 ENGINE = InnoDB;
 
 SHOW WARNINGS;
@@ -128,7 +128,7 @@ CREATE TABLE IF NOT EXISTS `padrao_documento`.`T_SPDC_OBJT_VOCB_CNTLD` (
     FOREIGN KEY (`ID_VOCB_CNTLD`)
     REFERENCES `padrao_documento`.`T_SPDC_VOCB_CNTLD` (`ID_VOCB_CNTLD`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON UPDATE NO ACTION);
 ENGINE = InnoDB;
 
 SHOW WARNINGS;
@@ -161,7 +161,7 @@ CREATE TABLE IF NOT EXISTS `padrao_documento`.`T_SPDC_PRPD_OBJT` (
     FOREIGN KEY (`ID_PRFX`)
     REFERENCES `padrao_documento`.`T_SPDC_PRFX` (`ID_PRFX`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON UPDATE NO ACTION);
 ENGINE = InnoDB;
 
 SHOW WARNINGS;
@@ -191,7 +191,7 @@ CREATE TABLE IF NOT EXISTS `padrao_documento`.`T_SPDC_PRPD_VOCB_CNTLD` (
     FOREIGN KEY (`ID_PRPD_OBJT`)
     REFERENCES `padrao_documento`.`T_SPDC_PRPD_OBJT` (`ID_PRPD_OBJT`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON UPDATE NO ACTION);
 ENGINE = InnoDB;
 
 SHOW WARNINGS;
@@ -212,9 +212,9 @@ CREATE TABLE IF NOT EXISTS `padrao_documento`.`T_SPDC_PRMT_ACSSO_TXTO` (
   `NU_FIM_ACSSO_TXTO` INT NULL COMMENT 'Numero do fim de acesso ao texto lido.',
   `NU_TMHO_TXTO` INT NULL COMMENT 'Numero do tamanho do texto.',
   `FL_FIM_ACSSO_TXTO` VARCHAR(5) NULL COMMENT 'Flag de fim de leitura do acesso ao texto a ser reconhecido na leitura de um documento a ser verificado de acordo com os padrÃµes.',
-  `IC_TIPO_ACSSO_TXTO` VARCHAR(1) NULL COMMENT 'Indicador do tipo do texto a ser lido. (T) Tabela, (P) Primary Key, Foreign Key (F).',
+  `IC_TIPO_ACSSO_TXTO` VARCHAR(100) NULL COMMENT 'Indicador do tipo do texto a ser lido. (T) Tabela, (P) Primary Key, Foreign Key (F).',
   `FL_PLVR_CHVE_SGBD` VARCHAR(1) NULL COMMENT 'Flag para definir se o parÃ¢metro Ã© uma palavra-chave de comandos de scripts de Sistema Gerenciador de Banco de Dados.',
-  PRIMARY KEY (`ID_PRMT_ACSSO_TXTO`))
+  PRIMARY KEY (`ID_PRMT_ACSSO_TXTO`));
 ENGINE = InnoDB;
 
 SHOW WARNINGS;
@@ -440,7 +440,7 @@ INSERT INTO `padrao_documento`.`T_SPDC_VOCB_CNTLD` (`ID_VOCB_CNTLD`, `SG_VOCB_CN
 INSERT INTO `padrao_documento`.`T_SPDC_VOCB_CNTLD` (`ID_VOCB_CNTLD`, `SG_VOCB_CNTLD`, `DS_VOCB_CNTLD`, `FL_TIPO_VOCB_CNTLD`) VALUES (73, 'ATRAS', 'ATRAS', NULL);
 INSERT INTO `padrao_documento`.`T_SPDC_VOCB_CNTLD` (`ID_VOCB_CNTLD`, `SG_VOCB_CNTLD`, `DS_VOCB_CNTLD`, `FL_TIPO_VOCB_CNTLD`) VALUES (74, 'ATRS', 'ATRASO', NULL);
 INSERT INTO `padrao_documento`.`T_SPDC_VOCB_CNTLD` (`ID_VOCB_CNTLD`, `SG_VOCB_CNTLD`, `DS_VOCB_CNTLD`, `FL_TIPO_VOCB_CNTLD`) VALUES (75, 'ATTV', 'ATRATIVIDADE', NULL);
-INSERT INTO `padrao_documento`.`T_SPDC_VOCB_CNTLD` (`ID_VOCB_CNTLD`, `SG_VOCB_CNTLD`, `DS_VOCB_CNTLD`, `FL_TIPO_VOCB_CNTLD`) VALUES (1874, 'ATRB', 'ATRIBUIÇÃO', NULL);
+INSERT INTO `padrao_documento`.`T_SPDC_VOCB_CNTLD` (`ID_VOCB_CNTLD`, `SG_VOCB_CNTLD`, `DS_VOCB_CNTLD`, `FL_TIPO_VOCB_CNTLD`) VALUES (1874, 'ATRB', 'ATRIBUIï¿½ï¿½O', NULL);
 INSERT INTO `padrao_documento`.`T_SPDC_VOCB_CNTLD` (`ID_VOCB_CNTLD`, `SG_VOCB_CNTLD`, `DS_VOCB_CNTLD`, `FL_TIPO_VOCB_CNTLD`) VALUES (76, 'ATBT', 'ATRIBUTO', NULL);
 INSERT INTO `padrao_documento`.`T_SPDC_VOCB_CNTLD` (`ID_VOCB_CNTLD`, `SG_VOCB_CNTLD`, `DS_VOCB_CNTLD`, `FL_TIPO_VOCB_CNTLD`) VALUES (77, 'ATUA', 'ATUACAO', NULL);
 INSERT INTO `padrao_documento`.`T_SPDC_VOCB_CNTLD` (`ID_VOCB_CNTLD`, `SG_VOCB_CNTLD`, `DS_VOCB_CNTLD`, `FL_TIPO_VOCB_CNTLD`) VALUES (78, 'ATUAL', 'ATUAL', NULL);
@@ -1328,7 +1328,7 @@ INSERT INTO `padrao_documento`.`T_SPDC_VOCB_CNTLD` (`ID_VOCB_CNTLD`, `SG_VOCB_CN
 INSERT INTO `padrao_documento`.`T_SPDC_VOCB_CNTLD` (`ID_VOCB_CNTLD`, `SG_VOCB_CNTLD`, `DS_VOCB_CNTLD`, `FL_TIPO_VOCB_CNTLD`) VALUES (505, 'IPCT', 'IMPACTO', NULL);
 INSERT INTO `padrao_documento`.`T_SPDC_VOCB_CNTLD` (`ID_VOCB_CNTLD`, `SG_VOCB_CNTLD`, `DS_VOCB_CNTLD`, `FL_TIPO_VOCB_CNTLD`) VALUES (506, 'IMPD', 'IMPEDIDO', NULL);
 INSERT INTO `padrao_documento`.`T_SPDC_VOCB_CNTLD` (`ID_VOCB_CNTLD`, `SG_VOCB_CNTLD`, `DS_VOCB_CNTLD`, `FL_TIPO_VOCB_CNTLD`) VALUES (1430, 'IPTC', 'IMPLANTACAO', NULL);
-INSERT INTO `padrao_documento`.`T_SPDC_VOCB_CNTLD` (`ID_VOCB_CNTLD`, `SG_VOCB_CNTLD`, `DS_VOCB_CNTLD`, `FL_TIPO_VOCB_CNTLD`) VALUES (507, 'IPMT', 'IMPLEMENTAÇÃO', NULL);
+INSERT INTO `padrao_documento`.`T_SPDC_VOCB_CNTLD` (`ID_VOCB_CNTLD`, `SG_VOCB_CNTLD`, `DS_VOCB_CNTLD`, `FL_TIPO_VOCB_CNTLD`) VALUES (507, 'IPMT', 'IMPLEMENTAï¿½ï¿½O', NULL);
 INSERT INTO `padrao_documento`.`T_SPDC_VOCB_CNTLD` (`ID_VOCB_CNTLD`, `SG_VOCB_CNTLD`, `DS_VOCB_CNTLD`, `FL_TIPO_VOCB_CNTLD`) VALUES (1782, 'IPMD', 'IMPLEMENTADA', NULL);
 INSERT INTO `padrao_documento`.`T_SPDC_VOCB_CNTLD` (`ID_VOCB_CNTLD`, `SG_VOCB_CNTLD`, `DS_VOCB_CNTLD`, `FL_TIPO_VOCB_CNTLD`) VALUES (1781, 'IPMD', 'IMPLEMENTADO', NULL);
 INSERT INTO `padrao_documento`.`T_SPDC_VOCB_CNTLD` (`ID_VOCB_CNTLD`, `SG_VOCB_CNTLD`, `DS_VOCB_CNTLD`, `FL_TIPO_VOCB_CNTLD`) VALUES (508, 'IMPT', 'IMPORTACAO', NULL);
@@ -1436,7 +1436,7 @@ INSERT INTO `padrao_documento`.`T_SPDC_VOCB_CNTLD` (`ID_VOCB_CNTLD`, `SG_VOCB_CN
 INSERT INTO `padrao_documento`.`T_SPDC_VOCB_CNTLD` (`ID_VOCB_CNTLD`, `SG_VOCB_CNTLD`, `DS_VOCB_CNTLD`, `FL_TIPO_VOCB_CNTLD`) VALUES (2117, 'JUSTA', 'JUSTA', NULL);
 INSERT INTO `padrao_documento`.`T_SPDC_VOCB_CNTLD` (`ID_VOCB_CNTLD`, `SG_VOCB_CNTLD`, `DS_VOCB_CNTLD`, `FL_TIPO_VOCB_CNTLD`) VALUES (559, 'JTFC', 'JUSTIFICATIVA', NULL);
 INSERT INTO `padrao_documento`.`T_SPDC_VOCB_CNTLD` (`ID_VOCB_CNTLD`, `SG_VOCB_CNTLD`, `DS_VOCB_CNTLD`, `FL_TIPO_VOCB_CNTLD`) VALUES (2142, 'KGF', 'KGF', NULL);
-INSERT INTO `padrao_documento`.`T_SPDC_VOCB_CNTLD` (`ID_VOCB_CNTLD`, `SG_VOCB_CNTLD`, `DS_VOCB_CNTLD`, `FL_TIPO_VOCB_CNTLD`) VALUES (2143, 'KGF', 'KILOGRAMA.FORÇA', NULL);
+INSERT INTO `padrao_documento`.`T_SPDC_VOCB_CNTLD` (`ID_VOCB_CNTLD`, `SG_VOCB_CNTLD`, `DS_VOCB_CNTLD`, `FL_TIPO_VOCB_CNTLD`) VALUES (2143, 'KGF', 'KILOGRAMA.FORï¿½A', NULL);
 INSERT INTO `padrao_documento`.`T_SPDC_VOCB_CNTLD` (`ID_VOCB_CNTLD`, `SG_VOCB_CNTLD`, `DS_VOCB_CNTLD`, `FL_TIPO_VOCB_CNTLD`) VALUES (824, 'KM', 'KM', NULL);
 INSERT INTO `padrao_documento`.`T_SPDC_VOCB_CNTLD` (`ID_VOCB_CNTLD`, `SG_VOCB_CNTLD`, `DS_VOCB_CNTLD`, `FL_TIPO_VOCB_CNTLD`) VALUES (1017, 'KMED', 'KMED', NULL);
 INSERT INTO `padrao_documento`.`T_SPDC_VOCB_CNTLD` (`ID_VOCB_CNTLD`, `SG_VOCB_CNTLD`, `DS_VOCB_CNTLD`, `FL_TIPO_VOCB_CNTLD`) VALUES (1587, 'LABEL', 'LABEL', NULL);
@@ -2307,7 +2307,7 @@ INSERT INTO `padrao_documento`.`T_SPDC_VOCB_CNTLD` (`ID_VOCB_CNTLD`, `SG_VOCB_CN
 INSERT INTO `padrao_documento`.`T_SPDC_VOCB_CNTLD` (`ID_VOCB_CNTLD`, `SG_VOCB_CNTLD`, `DS_VOCB_CNTLD`, `FL_TIPO_VOCB_CNTLD`) VALUES (1076, 'SUPT', 'SUPORTE', NULL);
 INSERT INTO `padrao_documento`.`T_SPDC_VOCB_CNTLD` (`ID_VOCB_CNTLD`, `SG_VOCB_CNTLD`, `DS_VOCB_CNTLD`, `FL_TIPO_VOCB_CNTLD`) VALUES (1077, 'SPSS', 'SUPRESSAO', NULL);
 INSERT INTO `padrao_documento`.`T_SPDC_VOCB_CNTLD` (`ID_VOCB_CNTLD`, `SG_VOCB_CNTLD`, `DS_VOCB_CNTLD`, `FL_TIPO_VOCB_CNTLD`) VALUES (1078, 'SPRM', 'SUPRIMENTO', NULL);
-INSERT INTO `padrao_documento`.`T_SPDC_VOCB_CNTLD` (`ID_VOCB_CNTLD`, `SG_VOCB_CNTLD`, `DS_VOCB_CNTLD`, `FL_TIPO_VOCB_CNTLD`) VALUES (1951, 'SCP', 'SUPRIMENTOS DE COLETA DE PREÇOS', NULL);
+INSERT INTO `padrao_documento`.`T_SPDC_VOCB_CNTLD` (`ID_VOCB_CNTLD`, `SG_VOCB_CNTLD`, `DS_VOCB_CNTLD`, `FL_TIPO_VOCB_CNTLD`) VALUES (1951, 'SCP', 'SUPRIMENTOS DE COLETA DE PREï¿½OS', NULL);
 INSERT INTO `padrao_documento`.`T_SPDC_VOCB_CNTLD` (`ID_VOCB_CNTLD`, `SG_VOCB_CNTLD`, `DS_VOCB_CNTLD`, `FL_TIPO_VOCB_CNTLD`) VALUES (1964, 'SK', 'SURROGATE KEY', NULL);
 INSERT INTO `padrao_documento`.`T_SPDC_VOCB_CNTLD` (`ID_VOCB_CNTLD`, `SG_VOCB_CNTLD`, `DS_VOCB_CNTLD`, `FL_TIPO_VOCB_CNTLD`) VALUES (2191, 'SUSP', 'SUSPENSAO', NULL);
 INSERT INTO `padrao_documento`.`T_SPDC_VOCB_CNTLD` (`ID_VOCB_CNTLD`, `SG_VOCB_CNTLD`, `DS_VOCB_CNTLD`, `FL_TIPO_VOCB_CNTLD`) VALUES (1079, 'TABL', 'TABELA', NULL);
@@ -2372,7 +2372,7 @@ INSERT INTO `padrao_documento`.`T_SPDC_VOCB_CNTLD` (`ID_VOCB_CNTLD`, `SG_VOCB_CN
 INSERT INTO `padrao_documento`.`T_SPDC_VOCB_CNTLD` (`ID_VOCB_CNTLD`, `SG_VOCB_CNTLD`, `DS_VOCB_CNTLD`, `FL_TIPO_VOCB_CNTLD`) VALUES (1004, 'TBT', 'TONELADA.BRUTA.TRANSPORTADA', NULL);
 INSERT INTO `padrao_documento`.`T_SPDC_VOCB_CNTLD` (`ID_VOCB_CNTLD`, `SG_VOCB_CNTLD`, `DS_VOCB_CNTLD`, `FL_TIPO_VOCB_CNTLD`) VALUES (2348, 'TU', 'TONELADA.UTIL', NULL);
 INSERT INTO `padrao_documento`.`T_SPDC_VOCB_CNTLD` (`ID_VOCB_CNTLD`, `SG_VOCB_CNTLD`, `DS_VOCB_CNTLD`, `FL_TIPO_VOCB_CNTLD`) VALUES (2346, 'TEU', 'TONELADA.UTIL - (NAO USAR)', NULL);
-INSERT INTO `padrao_documento`.`T_SPDC_VOCB_CNTLD` (`ID_VOCB_CNTLD`, `SG_VOCB_CNTLD`, `DS_VOCB_CNTLD`, `FL_TIPO_VOCB_CNTLD`) VALUES (2147, 'TKU', 'TONELADA.ÚTIL.POR.KILOMETRO', NULL);
+INSERT INTO `padrao_documento`.`T_SPDC_VOCB_CNTLD` (`ID_VOCB_CNTLD`, `SG_VOCB_CNTLD`, `DS_VOCB_CNTLD`, `FL_TIPO_VOCB_CNTLD`) VALUES (2147, 'TKU', 'TONELADA.ï¿½TIL.POR.KILOMETRO', NULL);
 INSERT INTO `padrao_documento`.`T_SPDC_VOCB_CNTLD` (`ID_VOCB_CNTLD`, `SG_VOCB_CNTLD`, `DS_VOCB_CNTLD`, `FL_TIPO_VOCB_CNTLD`) VALUES (1461, 'TRNM', 'TORNEAMENTO', NULL);
 INSERT INTO `padrao_documento`.`T_SPDC_VOCB_CNTLD` (`ID_VOCB_CNTLD`, `SG_VOCB_CNTLD`, `DS_VOCB_CNTLD`, `FL_TIPO_VOCB_CNTLD`) VALUES (1938, 'TORN', 'TORNEIO', NULL);
 INSERT INTO `padrao_documento`.`T_SPDC_VOCB_CNTLD` (`ID_VOCB_CNTLD`, `SG_VOCB_CNTLD`, `DS_VOCB_CNTLD`, `FL_TIPO_VOCB_CNTLD`) VALUES (1113, 'TT', 'TOTAL', NULL);
@@ -2528,11 +2528,11 @@ COMMIT;
 START TRANSACTION;
 USE `padrao_documento`;
 INSERT INTO `padrao_documento`.`T_SPDC_PRFX` (`ID_PRFX`, `SG_PRFX`, `DS_TIPO_DADO_PRFX`, `DS_CNTD_PRFX`, `DS_EXPLO_PRFX`, `DS_DFNC_PRFX`) VALUES (1, 'id_', 'Numeric', 'Identificacao ou Identificador', 'id_empregado', 'Identificador unico da tabela (chave primaria) pode ser um sequence');
-INSERT INTO `padrao_documento`.`T_SPDC_PRFX` (`ID_PRFX`, `SG_PRFX`, `DS_TIPO_DADO_PRFX`, `DS_CNTD_PRFX`, `DS_EXPLO_PRFX`, `DS_DFNC_PRFX`) VALUES (2, 'cd_', 'numeric char varchar', 'Codigo', 'cd_evento ', 'Codigo do Evento . Utilizado quando este for conhecido/visível pela aplicacao.');
+INSERT INTO `padrao_documento`.`T_SPDC_PRFX` (`ID_PRFX`, `SG_PRFX`, `DS_TIPO_DADO_PRFX`, `DS_CNTD_PRFX`, `DS_EXPLO_PRFX`, `DS_DFNC_PRFX`) VALUES (2, 'cd_', 'numeric char varchar', 'Codigo', 'cd_evento ', 'Codigo do Evento . Utilizado quando este for conhecido/visï¿½vel pela aplicacao.');
 INSERT INTO `padrao_documento`.`T_SPDC_PRFX` (`ID_PRFX`, `SG_PRFX`, `DS_TIPO_DADO_PRFX`, `DS_CNTD_PRFX`, `DS_EXPLO_PRFX`, `DS_DFNC_PRFX`) VALUES (3, 'dt_', 'Datetime', 'Datas ', 'dt_nascimento', 'Data de nascimento');
 INSERT INTO `padrao_documento`.`T_SPDC_PRFX` (`ID_PRFX`, `SG_PRFX`, `DS_TIPO_DADO_PRFX`, `DS_CNTD_PRFX`, `DS_EXPLO_PRFX`, `DS_DFNC_PRFX`) VALUES (4, 'nu_', 'Numeric Varchar', 'Numeros ou Sequencia numerica iniciada com zero', 'nu_cpf  nu_telefone', 'Numeros utilizados para calculos. ');
 INSERT INTO `padrao_documento`.`T_SPDC_PRFX` (`ID_PRFX`, `SG_PRFX`, `DS_TIPO_DADO_PRFX`, `DS_CNTD_PRFX`, `DS_EXPLO_PRFX`, `DS_DFNC_PRFX`) VALUES (5, 'ds_', 'char  varchar', 'Descricao', 'ds_celula', 'Descricao da celula. ');
-INSERT INTO `padrao_documento`.`T_SPDC_PRFX` (`ID_PRFX`, `SG_PRFX`, `DS_TIPO_DADO_PRFX`, `DS_CNTD_PRFX`, `DS_EXPLO_PRFX`, `DS_DFNC_PRFX`) VALUES (6, 'dl_', 'clob', 'Detalhamento', 'dl_help ', 'Grande volumes de texto necessarios para detalhamentos. Quando uma tabelas possui detalhamento e ainda e bastante acessada e recomendavel desnormaliza-la  para fins de performance através da  criacao de uma relacao de 1 para 1 a fim de  segregar a coluna long em uma outra tabela.  ');
+INSERT INTO `padrao_documento`.`T_SPDC_PRFX` (`ID_PRFX`, `SG_PRFX`, `DS_TIPO_DADO_PRFX`, `DS_CNTD_PRFX`, `DS_EXPLO_PRFX`, `DS_DFNC_PRFX`) VALUES (6, 'dl_', 'clob', 'Detalhamento', 'dl_help ', 'Grande volumes de texto necessarios para detalhamentos. Quando uma tabelas possui detalhamento e ainda e bastante acessada e recomendavel desnormaliza-la  para fins de performance atravï¿½s da  criacao de uma relacao de 1 para 1 a fim de  segregar a coluna long em uma outra tabela.  ');
 INSERT INTO `padrao_documento`.`T_SPDC_PRFX` (`ID_PRFX`, `SG_PRFX`, `DS_TIPO_DADO_PRFX`, `DS_CNTD_PRFX`, `DS_EXPLO_PRFX`, `DS_DFNC_PRFX`) VALUES (7, 'fl_', 'numeric char', 'Flag', 'fl_estado_civil ', 'Flag');
 INSERT INTO `padrao_documento`.`T_SPDC_PRFX` (`ID_PRFX`, `SG_PRFX`, `DS_TIPO_DADO_PRFX`, `DS_CNTD_PRFX`, `DS_EXPLO_PRFX`, `DS_DFNC_PRFX`) VALUES (8, 'sq_', 'numeric', 'Sequencias', 'sq_cadastro ', 'Utilizado para  armazenamento de sequencias que nao sao primary keys e deverao ser utilizadas somente quando necessario   ');
 INSERT INTO `padrao_documento`.`T_SPDC_PRFX` (`ID_PRFX`, `SG_PRFX`, `DS_TIPO_DADO_PRFX`, `DS_CNTD_PRFX`, `DS_EXPLO_PRFX`, `DS_DFNC_PRFX`) VALUES (9, 'nm_', 'varchar', 'Nomes', 'nm_candidato', 'Utilizado para armazenamento de nomes.');
@@ -2542,7 +2542,7 @@ INSERT INTO `padrao_documento`.`T_SPDC_PRFX` (`ID_PRFX`, `SG_PRFX`, `DS_TIPO_DAD
 INSERT INTO `padrao_documento`.`T_SPDC_PRFX` (`ID_PRFX`, `SG_PRFX`, `DS_TIPO_DADO_PRFX`, `DS_CNTD_PRFX`, `DS_EXPLO_PRFX`, `DS_DFNC_PRFX`) VALUES (13, 'sg_', 'numeric VARCHAR', 'Siglas', 'sg_unidade', 'Sigla da unidade medida');
 INSERT INTO `padrao_documento`.`T_SPDC_PRFX` (`ID_PRFX`, `SG_PRFX`, `DS_TIPO_DADO_PRFX`, `DS_CNTD_PRFX`, `DS_EXPLO_PRFX`, `DS_DFNC_PRFX`) VALUES (14, 'pc_', 'numeric', 'Percentual', 'pc_aumento', 'Percentagem de aumento');
 INSERT INTO `padrao_documento`.`T_SPDC_PRFX` (`ID_PRFX`, `SG_PRFX`, `DS_TIPO_DADO_PRFX`, `DS_CNTD_PRFX`, `DS_EXPLO_PRFX`, `DS_DFNC_PRFX`) VALUES (15, 'dc_', 'numeric', 'Duracao', 'dc_atendimento', 'Duracao em tempo');
-INSERT INTO `padrao_documento`.`T_SPDC_PRFX` (`ID_PRFX`, `SG_PRFX`, `DS_TIPO_DADO_PRFX`, `DS_CNTD_PRFX`, `DS_EXPLO_PRFX`, `DS_DFNC_PRFX`) VALUES (16, 'tp_', 'char numeric', 'tipo ', 'tp_campanha', 'Utilizado para armazenamento de tipos ou seja identificadores que retratam um conjunto de características conhecidas normalmente possuem check constraints associadas');
+INSERT INTO `padrao_documento`.`T_SPDC_PRFX` (`ID_PRFX`, `SG_PRFX`, `DS_TIPO_DADO_PRFX`, `DS_CNTD_PRFX`, `DS_EXPLO_PRFX`, `DS_DFNC_PRFX`) VALUES (16, 'tp_', 'char numeric', 'tipo ', 'tp_campanha', 'Utilizado para armazenamento de tipos ou seja identificadores que retratam um conjunto de caracterï¿½sticas conhecidas normalmente possuem check constraints associadas');
 INSERT INTO `padrao_documento`.`T_SPDC_PRFX` (`ID_PRFX`, `SG_PRFX`, `DS_TIPO_DADO_PRFX`, `DS_CNTD_PRFX`, `DS_EXPLO_PRFX`, `DS_DFNC_PRFX`) VALUES (17, 'tb_', 'tabela', 'tabela', 'tb_sist_clie', 'Utilizado para designar nomes de tabelas');
 INSERT INTO `padrao_documento`.`T_SPDC_PRFX` (`ID_PRFX`, `SG_PRFX`, `DS_TIPO_DADO_PRFX`, `DS_CNTD_PRFX`, `DS_EXPLO_PRFX`, `DS_DFNC_PRFX`) VALUES (18, 'pk_', 'chave primÃ¡ria', 'primary key', 'pk_sist_clie', 'Constraint do tipo Chave PrimÃ¡ria');
 INSERT INTO `padrao_documento`.`T_SPDC_PRFX` (`ID_PRFX`, `SG_PRFX`, `DS_TIPO_DADO_PRFX`, `DS_CNTD_PRFX`, `DS_EXPLO_PRFX`, `DS_DFNC_PRFX`) VALUES (19, 'fk_', 'chave estrangeira', 'foreign key', 'fk_sist_empregado_avaliacao01', 'Constraint do tipo Chave Estrangeira');
