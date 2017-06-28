@@ -13,8 +13,8 @@
     </head>
     <body>
         <h1>Seleção de Arquivos</h1>
-        <form action="resultado" method="POST">
-            Selecione o arquivo: <input type="file" name="arq"><p>
+        <form action="resultado" enctype="multipart/form-data" method="POST" >
+            Selecione o arquivo: <input type="file" name="arquivo"><p>
             Selecione a estrutura: <select name="est">
                 
                 <option></option>

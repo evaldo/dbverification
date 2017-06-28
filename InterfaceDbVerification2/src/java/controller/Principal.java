@@ -5,30 +5,32 @@
  */
 package controller;
 
+import java.io.File;
 import java.io.IOException;
-import java.io.PrintWriter;
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 
 /**
  *
  * @author alunoces
  */
-@WebServlet(name = "Principal", urlPatterns = {"/Principal"})
+@WebServlet(name = "Principal", urlPatterns = {"/Principal"," /resultado"})
+@MultipartConfig
 public class Principal extends HttpServlet {
+    private String pastaArquivos = null;
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+    @Override
+    public void init(ServletConfig config) throws ServletException {
+        super.init(config); //To change body of generated methods, choose Tools | Templates.
+    pastaArquivos = getServletContext().getInitParameter("pastaArquivos");
+    }
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -67,7 +69,23 @@ public class Principal extends HttpServlet {
             throws ServletException, IOException {
         
         
-        if(request.getRequestURI().contains("/resultado")){
+        
+        if(request.getRequestURI().contains("/resultado")) {
+            String estrutura = request.getParameter("est");
+            
+            String pastaProgeto=getServletContext().getRealPath("");
+            System.out.println(pastaProgeto);
+        String salvarEm = pastaProgeto+File.separator+pastaArquivos;
+        System.out.println("Salvando arquivo em: " +salvarEm);
+        File pasta = new File(salvarEm);
+        if(!pasta.exists()){
+        pasta.mkdir();
+        }
+        Part arquivoSelecionado = request.getPart("arquivo");
+        String nomeArquivo = arquivoSelecionado.getSubmittedFileName();
+        
+        //gravar o arquivo no disco
+        arquivoSelecionado.write(salvarEm+File.separator+ nomeArquivo);
         request.getRequestDispatcher("/WEB-INF/resultado.jsp").forward(request, response);
        }
     }
