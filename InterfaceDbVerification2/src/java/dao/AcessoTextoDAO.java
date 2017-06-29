@@ -12,9 +12,30 @@ import java.util.logging.Logger;
 import model.AcessoTexto;
 
 public class AcessoTextoDAO {
+Connection conexao;
 
+    public AcessoTextoDAO() {
+    }
+
+    public List<String> listarEstruturas(){
+        ArrayList listaEst = new ArrayList();
+    try {
+        conexao = DriverManager.getConnection("jdbc:derby://localhost:1527/anotacaoSemantica", "teste", "teste");//acesso ao banco.
+        Statement operacao = conexao.createStatement();
+        ResultSet resultado = operacao.executeQuery("SELECT IC_TIPO_ACSSO_TXTO FROM T_SPDC_PRMT_ACSSO_TXTO");// filipe    
+        
+         while (resultado.next()) {//enquanto há resultado
+             listaEst.add(resultado.getString("IC_TIPO_ACSSO_TXTO"));
+             
+ }
+    } catch (SQLException ex) {
+        Logger.getLogger(AcessoTextoDAO.class.getName()).log(Level.SEVERE, null, ex);
+    }
+            return listaEst;
+    }
+    
     public AcessoTexto selecionarTexto(String trecho) {
-        Connection conexao;
+        
          AcessoTexto acess = new AcessoTexto();
         try {
             conexao = DriverManager.getConnection("jdbc:derby://localhost:1527/anotacaoSemantica", "teste", "teste");//acesso ao banco.

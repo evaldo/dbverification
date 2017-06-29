@@ -25,6 +25,8 @@ public class AcessoTexto {
 
     public AcessoTexto() {
     }
+    
+    
 
     public void exibirConteudo(String nomeArqui, String trecho){
         try {

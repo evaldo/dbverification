@@ -5,8 +5,11 @@
  */
 package controller;
 
+import dao.AcessoTextoDAO;
 import java.io.File;
 import java.io.IOException;
+import static java.util.Collections.list;
+import java.util.List;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -15,6 +18,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
+import model.AcessoTexto;
 
 /**
  *
@@ -48,9 +52,7 @@ public class Principal extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        if(request.getRequestURI().contains("/Principal")){
-        request.getRequestDispatcher("/WEB-INF/selecao.jsp").forward(request, response);
-       }
+       
         
         
         
@@ -67,7 +69,13 @@ public class Principal extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+         if(request.getRequestURI().contains("/Principal")){
+           
+            AcessoTextoDAO actdao= new AcessoTextoDAO();
+            List l = actdao.listarEstruturas();
+            request.setAttribute("est", l);
+        request.getRequestDispatcher("/WEB-INF/selecao.jsp").forward(request, response);
+       }
         
         
         if(request.getRequestURI().contains("/resultado")) {
@@ -85,8 +93,12 @@ public class Principal extends HttpServlet {
         String nomeArquivo = arquivoSelecionado.getSubmittedFileName();
         
         //gravar o arquivo no disco
-        arquivoSelecionado.write(salvarEm+File.separator+ nomeArquivo);
+        String caminhoArquivo = salvarEm+File.separator+ nomeArquivo;
+        arquivoSelecionado.write(caminhoArquivo);
         request.getRequestDispatcher("/WEB-INF/resultado.jsp").forward(request, response);
+        
+            AcessoTexto act = new AcessoTexto();
+            act.exibirConteudo(estrutura,nomeArquivo);
        }
     }
 
