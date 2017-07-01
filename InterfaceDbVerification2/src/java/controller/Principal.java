@@ -52,7 +52,15 @@ public class Principal extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-       
+         if(request.getRequestURI().contains("/Principal")){
+           
+            AcessoTextoDAO actdao= new AcessoTextoDAO();
+            List l = actdao.listarEstruturas();
+             System.out.println(l);
+            request.setAttribute("est", l);
+        request.getRequestDispatcher("/WEB-INF/selecao.jsp").forward(request, response);
+       }
+        
         
         
         
@@ -69,14 +77,7 @@ public class Principal extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-         if(request.getRequestURI().contains("/Principal")){
-           
-            AcessoTextoDAO actdao= new AcessoTextoDAO();
-            List l = actdao.listarEstruturas();
-            request.setAttribute("est", l);
-        request.getRequestDispatcher("/WEB-INF/selecao.jsp").forward(request, response);
-       }
-        
+       
         
         if(request.getRequestURI().contains("/resultado")) {
             String estrutura = request.getParameter("est");

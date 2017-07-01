@@ -17,10 +17,10 @@
             Selecione o arquivo: <input type="file" name="arquivo"><p>
                 
             Selecione a estrutura: <select name="est">
-                 <c:forEach var="k" items="${est}">
-                     <option>${k}</option>
+                <c:forEach var="k" items="${est}">
+                    <option>${k}</option>
                      
-        </c:forEach>  
+                    </c:forEach>  
                 
                 
             </select>
