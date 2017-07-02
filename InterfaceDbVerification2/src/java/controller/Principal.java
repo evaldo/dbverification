@@ -54,10 +54,17 @@ public class Principal extends HttpServlet {
         
          if(request.getRequestURI().contains("/Principal")){
            
-            AcessoTextoDAO actdao= new AcessoTextoDAO();
-            List l = actdao.listarEstruturas();
-             System.out.println(l);
+             try{
+             AcessoTextoDAO actdao= new AcessoTextoDAO();
+              List l = actdao.listarEstruturas();
+              System.out.println(l);
             request.setAttribute("est", l);
+             }catch(Exception e ){
+              
+             }
+           
+            
+             
         request.getRequestDispatcher("/WEB-INF/selecao.jsp").forward(request, response);
        }
         

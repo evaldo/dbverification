@@ -11,6 +11,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.AcessoTexto;
 
+
+
 public class AcessoTextoDAO {
 
     Connection conexao;
@@ -18,8 +20,9 @@ public class AcessoTextoDAO {
     public AcessoTextoDAO() {
     }
 
-    public List<String> listarEstruturas() {
+    public List<String> listarEstruturas() throws ClassNotFoundException {
         ArrayList listaEst = new ArrayList();
+        Class.forName("org.apache.derby.jdbc.ClientDriver"); 
         try {
             conexao = DriverManager.getConnection("jdbc:derby://localhost:1527/anotacaoSemantica", "teste", "teste");//acesso ao banco.
             Statement operacao = conexao.createStatement();
