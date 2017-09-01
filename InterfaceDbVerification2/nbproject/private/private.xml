@@ -3,8 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/filipe/ProjetosGit/dbverification/InterfaceDbVerification2/src/java/controller/Principal.java</file>
-            <file>file:/home/filipe/ProjetosGit/dbverification/InterfaceDbVerification2/web/WEB-INF/web.xml</file>
+            <file>file:/C:/Users/Filipe/Documents/NetBeansProjects/dbverification/InterfaceDbVerification2/web/WEB-INF/web.xml</file>
+            <file>file:/C:/Users/Filipe/Documents/NetBeansProjects/dbverification/InterfaceDbVerification2/web/WEB-INF/selecao.jsp</file>
+            <file>file:/C:/Users/Filipe/Documents/NetBeansProjects/dbverification/InterfaceDbVerification2/src/java/dao/AcessoTextoDAO.java</file>
+            <file>file:/C:/Users/Filipe/Documents/NetBeansProjects/dbverification/InterfaceDbVerification2/src/java/controller/Principal.java</file>
+            <file>file:/C:/Users/Filipe/Documents/NetBeansProjects/dbverification/InterfaceDbVerification2/src/java/model/AcessoTexto.java</file>
         </group>
     </open-files>
 </project-private>

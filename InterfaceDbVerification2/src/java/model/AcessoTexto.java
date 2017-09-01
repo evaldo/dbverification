@@ -20,6 +20,8 @@ public class AcessoTexto {
     private int NumInicio;
     private int NumFim;
     private int Tamanho;
+    private String FlagInicio;
+
     private String FlagFim;
     private String Tipo;
 
@@ -35,7 +37,8 @@ public class AcessoTexto {
 
             String linha = lerArq.readLine();// lê a primeira linha e salta
             linha = linha.trim();//elimina os espaços em branco dos extremos da string
-
+            
+            
             while (linha != null) {//enquanto na linha houver algum caractere faça:
                 linha = lerArq.readLine();
                 if (linha == null) {
@@ -43,9 +46,11 @@ public class AcessoTexto {
                 } 
                 else if (trecho.contains("CREATE TABLE") && linha.contains("CREATE TABLE")) {
                     AcessoTextoDAO acDAO = new AcessoTextoDAO();
-                    String flag = acDAO.selecionarTexto(trecho).getFlagFim();
-                    int num_inicio = linha.lastIndexOf(trecho) + trecho.length();//talvez deletar do banco
-                    int num_fim = linha.indexOf(flag.trim());
+                    String flagI = acDAO.selecionarTexto(trecho).getFlagInicio();
+                    String flagF = acDAO.selecionarTexto(trecho).getFlagFim();
+                    
+                    int num_inicio = trecho.length();
+                    int num_fim = linha.indexOf(flagI.trim());
                     char[] array = new char[linha.length()];//cria um array com o tamanho da linha
                     if (array.length > 0) {//se o array for maior que 0 faça
                         linha.getChars(num_inicio, num_fim, array, 0);//pega um determinado trecho de codigo
@@ -156,6 +161,13 @@ public class AcessoTexto {
         this.Tamanho = Tamanho;
     }
     
+    public String getFlagInicio() {
+        return FlagInicio;
+    }
+
+    public void setFlagInicio(String FlagInicio) {
+        this.FlagInicio = FlagInicio;
+    }
     
     
 }

@@ -90,7 +90,7 @@ public class Principal extends HttpServlet {
             String estrutura = request.getParameter("est");
             
             String pastaProgeto=getServletContext().getRealPath("");
-            System.out.println(pastaProgeto);
+          //  System.out.println(pastaProgeto);
         String salvarEm = pastaProgeto+File.separator+pastaArquivos;
         System.out.println("Salvando arquivo em: " +salvarEm);
         File pasta = new File(salvarEm);
@@ -106,7 +106,7 @@ public class Principal extends HttpServlet {
         request.getRequestDispatcher("/WEB-INF/resultado.jsp").forward(request, response);
         
             AcessoTexto act = new AcessoTexto();
-            act.exibirConteudo(estrutura,nomeArquivo);
+            act.exibirConteudo(caminhoArquivo,estrutura);
        }
     }
 
