@@ -7,13 +7,15 @@ package controller;
 
 import handler.AbstractHandler;
 import handler.CreateTableHandler;
-import handler.HandlerInterface;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import handler.Handler;
+import model.AbstractDatabaseObject;
+import model.DatabaseObject;
 
 /**
  *
@@ -21,7 +23,8 @@ import java.util.List;
  */
 public class FileProcess {
     private static final Charset CHARSET = Charset.forName("cp1252");
-    private List<HandlerInterface> handlers = new ArrayList<HandlerInterface>();
+    private List<Handler> handlers = new ArrayList<>();
+    private List<AbstractDatabaseObject> invalidObjects = new ArrayList<>();
     
     /**
      * Singleton Implementation
@@ -35,12 +38,13 @@ public class FileProcess {
         return  fileProcess;
     }
     
-    public void processFile(String path) throws IOException{
+    public List<AbstractDatabaseObject> processFile(String path) throws IOException{
         String dbScript = readFile(path, CHARSET);
         findCreateTable(dbScript);
-        for (HandlerInterface handler : handlers){
-            handler.process();
+        for (Handler handler : handlers){
+            invalidObjects.addAll(handler.process());
         }
+       return invalidObjects;
     }
     
     private void findCreateTable(String dbScript){

@@ -6,23 +6,28 @@
 package handler;
 
 import java.util.List;
+import model.AbstractDatabaseObject;
 import model.ColumnDatabaseObject;
+import model.CommentDatabaseObject;
+import model.DatabaseObject;
 import model.TableDatabaseObject;
 
 /**
  *
  * @author luiz.rodrigues
  */
-public class CreateTableHandler extends AbstractHandler implements HandlerInterface{
+public class CreateTableHandler extends AbstractHandler implements Handler{
 
     public CreateTableHandler(String textBlock) {
         super(textBlock);
     }
 
     @Override
-    public void process() {
+    public List<AbstractDatabaseObject> process() {
         findTableName();
         findAttributes();
+        findComments();
+        return findInvalidObjects();
     }
     
     private void findTableName(){
@@ -53,6 +58,25 @@ public class CreateTableHandler extends AbstractHandler implements HandlerInterf
             attribute = attribute.trim();
             s=removeUnededChars(attribute.split(" ")[0]);
             dbObjects.add(new ColumnDatabaseObject(s));
+        }
+    }
+    
+    private void findComments(){
+        int lastIndexedIndex = 0;
+        while (lastIndexedIndex != -1) {
+            int startIndex = textBlock.indexOf("COMMENT", lastIndexedIndex);
+            int endIndex = textBlock.indexOf("'");
+            
+            if (startIndex == -1){
+                break;
+            }
+            if (endIndex == -1){
+                //TODO lançar exceção pois se entrar neste if é porque achou um comando sem ponto e vírgula
+                break;
+            }
+            String s =removeUnededChars(textBlock.substring(startIndex, endIndex));
+            dbObjects.add(new CommentDatabaseObject(s));
+            lastIndexedIndex = endIndex;
         }
     }
     

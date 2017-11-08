@@ -7,6 +7,7 @@ package handler;
 
 import java.util.ArrayList;
 import java.util.List;
+import model.AbstractDatabaseObject;
 import model.DatabaseObject;
 
 /**
@@ -15,10 +16,21 @@ import model.DatabaseObject;
  */
 public class AbstractHandler {
     protected String textBlock;
-    protected List<DatabaseObject> dbObjects = new ArrayList<DatabaseObject>();
+    protected List<DatabaseObject> dbObjects = new ArrayList<>();
 
     public AbstractHandler(String textBlock) {
         this.textBlock = textBlock;
+    }
+    
+    protected List<AbstractDatabaseObject> findInvalidObjects(){
+        //TODO: Throw handler not processed exception
+        List<AbstractDatabaseObject> invalidObjects = new ArrayList<>();
+        for(DatabaseObject dbObject : dbObjects){
+            if (!dbObject.isValid()){
+                invalidObjects.add((AbstractDatabaseObject)dbObject);
+            }
+        }
+        return invalidObjects;
     }
     
 }

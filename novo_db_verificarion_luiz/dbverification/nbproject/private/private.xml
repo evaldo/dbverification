@@ -4,13 +4,11 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/luiz.rodrigues/Documents/NetBeansProjects/dbverification/src/java/model/DatabaseObjectInterface.java</file>
-            <file>file:/C:/Users/luiz.rodrigues/Documents/NetBeansProjects/dbverification/src/java/model/DatabaseObject.java</file>
             <file>file:/C:/Users/luiz.rodrigues/Documents/NetBeansProjects/dbverification/web/upload.jsp</file>
             <file>file:/C:/Users/luiz.rodrigues/Documents/NetBeansProjects/dbverification/src/java/controller/FileProcess.java</file>
             <file>file:/C:/Users/luiz.rodrigues/Documents/NetBeansProjects/dbverification/src/java/handler/CreateTableHandler.java</file>
             <file>file:/C:/Users/luiz.rodrigues/Documents/NetBeansProjects/dbverification/web/index.html</file>
             <file>file:/C:/Users/luiz.rodrigues/Documents/NetBeansProjects/dbverification/src/java/view/FileUpload.java</file>
-            <file>file:/C:/Users/luiz.rodrigues/Documents/NetBeansProjects/dbverification/src/java/model/TableDatabaseObject.java</file>
         </group>
     </open-files>
 </project-private>

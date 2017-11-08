@@ -8,6 +8,7 @@ package view;
 import controller.FileProcess;
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -15,6 +16,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
+import model.AbstractDatabaseObject;
+import model.DatabaseObject;
 
 /**
  *
@@ -34,11 +37,11 @@ public class FileUpload extends  HttpServlet{
         String fullFileDest = upload(request);
         
         FileProcess fileUpload = FileProcess.getInstance();
-        fileUpload.processFile(fullFileDest);
+        List<AbstractDatabaseObject> invalidObjects = fileUpload.processFile(fullFileDest);
         
         
-        request.setAttribute("message", "Upload has been done successfully!");
-        getServletContext().getRequestDispatcher("/message.jsp").forward(
+        request.setAttribute("invalidObjects", invalidObjects);
+        getServletContext().getRequestDispatcher("/result.jsp").forward(
                 request, response);
     }
     

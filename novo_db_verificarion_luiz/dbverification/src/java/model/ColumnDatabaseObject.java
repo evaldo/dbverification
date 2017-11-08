@@ -9,10 +9,16 @@ package model;
  *
  * @author luiz.rodrigues
  */
-public class ColumnDatabaseObject extends DatabaseObject{
+public class ColumnDatabaseObject extends AbstractDatabaseObject{
     
     public ColumnDatabaseObject(String objectName) {
         super(objectName);
+        databaseObjectInstanceType = "COLUMN";
+    }
+    
+    @Override
+    protected boolean validatePrefix(String word) {
+        return true; //TODO: implement validatePrefix logic
     }
     
 }

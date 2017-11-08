@@ -5,14 +5,16 @@
  */
 package model;
 
+import java.util.List;
+
 /**
  *
  * @author luiz.rodrigues
  */
-public class TableDatabaseObject extends DatabaseObject{
+public class TableDatabaseObject extends AbstractDatabaseObject{
     
     public TableDatabaseObject(String objectName) {
         super(objectName);
+        databaseObjectInstanceType = "TABLE";
     }
-    
 }

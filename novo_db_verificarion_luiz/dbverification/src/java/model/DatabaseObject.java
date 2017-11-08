@@ -9,14 +9,7 @@ package model;
  *
  * @author luiz.rodrigues
  */
-public class DatabaseObject {
-    protected String objectName;
-
-    public DatabaseObject(String objectName) {
-        this.objectName = objectName;
-    }
+public interface DatabaseObject {
     
-    public void validate() {
-        
-    }
+    public Boolean isValid();
 }
