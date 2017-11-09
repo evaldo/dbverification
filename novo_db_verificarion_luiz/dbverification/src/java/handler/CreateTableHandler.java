@@ -65,7 +65,7 @@ public class CreateTableHandler extends AbstractHandler implements Handler{
         int lastIndexedIndex = 0;
         while (lastIndexedIndex != -1) {
             int startIndex = textBlock.indexOf("COMMENT", lastIndexedIndex);
-            int endIndex = textBlock.indexOf("'");
+            int endIndex = textBlock.indexOf(",", startIndex);
             
             if (startIndex == -1){
                 break;
@@ -79,10 +79,5 @@ public class CreateTableHandler extends AbstractHandler implements Handler{
             lastIndexedIndex = endIndex;
         }
     }
-    
-    private String removeUnededChars(String str){
-        return str.replaceAll("`", "").replaceAll("'", "").replaceAll("", "");
-    }
-    
     
 }

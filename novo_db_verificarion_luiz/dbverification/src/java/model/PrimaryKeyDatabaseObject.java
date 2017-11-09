@@ -11,10 +11,10 @@ import java.util.List;
  *
  * @author luiz.rodrigues
  */
-public class TableDatabaseObject extends AbstractDatabaseObject{
+public class PrimaryKeyDatabaseObject extends AbstractDatabaseObject{
     
-    public TableDatabaseObject(String objectName) {
+    public PrimaryKeyDatabaseObject(String objectName) {
         super(objectName);
-        databaseObjectInstanceType = "TABELA";
+        databaseObjectInstanceType = "CHAVE PRIMÁRIA";
     }
 }

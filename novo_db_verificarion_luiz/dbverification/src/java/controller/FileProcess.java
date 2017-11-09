@@ -5,7 +5,7 @@
  */
 package controller;
 
-import handler.AbstractHandler;
+import handler.AlterTableHandler;
 import handler.CreateTableHandler;
 import java.io.IOException;
 import java.nio.charset.Charset;
@@ -15,7 +15,6 @@ import java.util.ArrayList;
 import java.util.List;
 import handler.Handler;
 import model.AbstractDatabaseObject;
-import model.DatabaseObject;
 
 /**
  *
@@ -40,6 +39,7 @@ public class FileProcess {
     
     public List<AbstractDatabaseObject> processFile(String path) throws IOException{
         String dbScript = readFile(path, CHARSET);
+        findAlterTable(dbScript);
         findCreateTable(dbScript);
         for (Handler handler : handlers){
             invalidObjects.addAll(handler.process());
@@ -63,6 +63,26 @@ public class FileProcess {
             
             CreateTableHandler createHandler = new CreateTableHandler(dbScript.substring(lastDbCommantIndex, lastSemicolom));
             handlers.add(createHandler);
+            lastIndexedIndex = lastSemicolom;
+        }
+    }
+    
+    private void findAlterTable(String dbScript){
+        int lastIndexedIndex = 0;
+        while (lastIndexedIndex != -1){
+            int lastDbCommantIndex = dbScript.indexOf("ALTER TABLE", lastIndexedIndex);
+            int lastSemicolom = dbScript.indexOf(";", lastDbCommantIndex);
+            
+            if (lastDbCommantIndex == -1){
+                break;
+            }
+            if (lastSemicolom == -1){
+                //TODO lançar exceção pois se entrar neste if é porque achou um comando sem ponto e vírgula
+                break;
+            }
+            
+            AlterTableHandler alterHandler = new AlterTableHandler(dbScript.substring(lastDbCommantIndex, lastSemicolom));
+            handlers.add(alterHandler);
             lastIndexedIndex = lastSemicolom;
         }
     }

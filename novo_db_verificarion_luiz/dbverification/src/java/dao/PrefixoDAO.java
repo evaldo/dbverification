@@ -22,8 +22,8 @@ public class PrefixoDAO extends AbstractDAO{
         try {
             int total = 0;
             PreparedStatement preparedStatement = getConnection().prepareStatement(sql);
-            preparedStatement.setString(1, prefix);
-            preparedStatement.setString(2, databaseObjectType);
+            preparedStatement.setString(1, databaseObjectType);
+            preparedStatement.setString(2, prefix.concat("_"));
             ResultSet resultSet = preparedStatement.executeQuery();
             while(resultSet.next()){
                 total = resultSet.getInt("TOTAL");

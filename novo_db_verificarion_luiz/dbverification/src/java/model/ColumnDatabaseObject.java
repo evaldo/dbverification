@@ -16,9 +16,10 @@ public class ColumnDatabaseObject extends AbstractDatabaseObject{
         databaseObjectInstanceType = "COLUMN";
     }
     
+    
     @Override
     protected boolean validatePrefix(String word) {
-        return true; //TODO: implement validatePrefix logic
+        return true; //ignoring prifix validation of superclass for this object
     }
     
 }

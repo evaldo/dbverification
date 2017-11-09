@@ -3,6 +3,7 @@
 -Ponto create table tem que ser no formato schema.nome_da_tabela
 -Pode apresentar um comportamento inesperado quando o script a ser validado possui inserts e cometários com palavras reservadas (CREATE, ALTER, --, etc).
 -COmment no create entre ''
+-Comandos e nomes preferencialmente em caixa alta
 
 Existem diversos comandos que fazem a mesma coisa:
 https://www.w3schools.com/sql/sql_primarykey.asp
