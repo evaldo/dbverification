@@ -15,11 +15,9 @@
     <body>
         <table>
             <thead>
-                <th>
-                    <td><b>Invalid Object:</b></td>
-                    <td><b>Problematic Word:</b></td>
-                    <td><b>Type:</b></td>
-                </th>
+                    <th><b>Invalid Object:</b></th>
+                    <th><b>Problematic Word:</b></th>
+                    <th><b>Type:</b></th>
             </thead>
             <tbody>
                 <c:forEach items="${invalidObjects}" var="invalidObject">
